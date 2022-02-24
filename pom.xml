@@ -8,11 +8,11 @@
         <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.monochromecivilians</groupId>
-    <artifactId>hashcode2021</artifactId>
+    <groupId>com.crystaldevs</groupId>
+    <artifactId>hashcode2022</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hashcode2021</name>
-    <description>Project for hashcode 2021</description>
+    <name>hashcode2022</name>
+    <description>Project for hashcode 2022</description>
 
     <properties>
         <java.version>1.8</java.version>
