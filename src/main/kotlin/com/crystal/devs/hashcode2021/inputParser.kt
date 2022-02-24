@@ -7,7 +7,7 @@ fun parseInput(input: List<String>): ParsedInput {
     var i = 0
     while (contributors.size < nbContributors) {
         val (name, skillNumber) = drop[i].split(" ")
-        val skills = parseSkill(skillNumber.toInt(), drop, i)
+        val skills = parseSkillMap(skillNumber.toInt(), drop, i)
 
         contributors.add(Contributor(name, skills))
         i += 1 + skillNumber.toInt()
@@ -29,15 +29,19 @@ fun parseInput(input: List<String>): ParsedInput {
     return ParsedInput(contributors, projects)
 }
 
-private fun parseSkill(nbSkils: Int, projectsInput: List<String>, i: Int): Map<String, Int> {
-    val skills = (1..nbSkils).associate {
+private fun parseSkill(nbSkils: Int, projectsInput: List<String>, i: Int): List<Skill> {
+    val skills = (1..nbSkils).map {
         val (skillName, skillLevel) = projectsInput[i + it].split(" ")
-        skillName to skillLevel.toInt()
+        Skill(skillName, skillLevel.toInt())
     }
     return skills
 }
 
-data class ParsedInput(val contributors: List<Contributor>, val projects: List<Project>)
 
-data class Contributor(val name: String, val skills: Map<String, Int>)
-data class Project(val projectName: String, val duration: Int, val score: Int, val bestBeforeTime: Int, val roles: Map<String, Int>)
+private fun parseSkillMap(nbSkils: Int, projectsInput: List<String>, i: Int): MutableMap<String, Int> {
+    val skills = (1..nbSkils).associate {
+        val (skillName, skillLevel) = projectsInput[i + it].split(" ")
+        skillName to skillLevel.toInt()
+    }
+    return skills.toMutableMap()
+}

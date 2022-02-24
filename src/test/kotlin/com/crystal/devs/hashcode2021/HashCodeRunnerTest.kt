@@ -37,5 +37,11 @@ internal class HashCodeRunnerTest {
         val input = File("./src/main/resources/e_exceptional_skills.in.txt").readLines(Charsets.UTF_8)
         assertThat(runInput(input, "E")).isGreaterThan(0)
     }
+
+    @Test
+    fun `run Input F`() {
+        val input = File("./src/main/resources/e_exceptional_skills.in.txt").readLines(Charsets.UTF_8)
+        assertThat(runInput(input, "F")).isGreaterThan(0)
+    }
 }
 
