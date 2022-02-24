@@ -37,10 +37,7 @@ private fun parseSkill(nbSkils: Int, projectsInput: List<String>, i: Int): Map<S
     return skills
 }
 
-data class ParsedInput(
-    val contributors: List<Contributor>,
-    val projects: List<Project>
-    )
+data class ParsedInput(val contributors: List<Contributor>, val projects: List<Project>)
 
 data class Contributor(val name: String, val skills: Map<String, Int>)
 data class Project(val projectName: String, val duration: Int, val score: Int, val bestBeforeTime: Int, val roles: Map<String, Int>)
