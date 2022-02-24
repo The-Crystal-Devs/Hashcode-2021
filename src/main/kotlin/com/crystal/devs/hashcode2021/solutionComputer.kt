@@ -28,7 +28,7 @@ fun computeSolution(parsedInput: ParsedInput): Solution {
         ++i
     }
 
-    return Solution(daySituation.finishedProjects)
+    return Solution(finishedProjects)
 
 //        val possibleMentors = availableContributors.filter { contributor ->
 //            skillToPossibleContributor.entries.count {
@@ -74,13 +74,14 @@ fun processDay(daySituation: DaySituation): DaySituation {
         val nextFinishedProject = sortedByEndDateOngoingProjects.first()
         val nextDay = nextFinishedProject.endDay
         val nextFinishedProjects = sortedByEndDateOngoingProjects.filter { it.endDay == nextDay }
+
         nextFinishedProjects.map { it.contributors }
             .forEach { availableContributors.addAll(it.map { it.second }) }
         val finishedProjects =
             nextFinishedProjects.map { FinishedProject(it.name, it.contributors.map { c -> c.second.name }) }
         return daySituation.copy(
-            dayNumber = nextDay,
-            sortedByEndDateOngoingProjects = sortedByEndDateOngoingProjects.filter { it.endDay < nextDay },
+            dayNumber = nextDay + 1,
+            sortedByEndDateOngoingProjects = sortedByEndDateOngoingProjects.filter { it.endDay > nextDay },
             availableContributors = availableContributors.toSet(),
             sortedRemainingProjects = sortedRemainingProjects,
             finishedProjects = finishedProjects
@@ -92,7 +93,8 @@ fun processDay(daySituation: DaySituation): DaySituation {
         dayNumber = Int.MAX_VALUE,
         sortedByEndDateOngoingProjects = emptyList(),
         availableContributors = emptySet(),
-        sortedRemainingProjects = mutableListOf()
+        sortedRemainingProjects = mutableListOf(),
+        finishedProjects = mutableListOf()
     )
 
 }
