@@ -32,7 +32,7 @@ fun parseInput(input: List<String>): ParsedInput {
 private fun parseSkill(nbSkils: Int, projectsInput: List<String>, i: Int): List<Skill> {
     val skills = (1..nbSkils).map {
         val (skillName, skillLevel) = projectsInput[i + it].split(" ")
-        Skill(skillName, skillLevel.toInt())
+        Skill(skillName, skillLevel.toInt(), it)
     }
     return skills
 }
